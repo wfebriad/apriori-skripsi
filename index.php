@@ -17,7 +17,7 @@ if (!file_exists($menu . ".php")) {
     $menu = 'not_found';
 }
 
-if (!isset($_SESSION['apriori_toko_id']) &&
+if (!isset($_SESSION['apriori_skripsi_id']) &&
     ($menu != '' & $menu != 'home' & $menu != 'tentang' & $menu != 'not_found' & $menu != 'forbidden')) {
     header("location:login.php");
 }

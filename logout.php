@@ -1,9 +1,9 @@
 <?php
     session_start();
-    unset($_SESSION['apriori_toko_id']);
-    unset($_SESSION['apriori_toko_username']);
-    unset($_SESSION['apriori_toko_level']);
-    unset($_SESSION['apriori_toko_key']);
-    unset($_SESSION['apriori_toko_last_login']);
+    unset($_SESSION['apriori_skripsi_id']);
+    unset($_SESSION['apriori_skripsi_username']);
+    unset($_SESSION['apriori_skripsi_level']);
+    unset($_SESSION['apriori_skripsi_key']);
+    unset($_SESSION['apriori_skripsi_last_login']);
     session_destroy();
     header("location:login.php");

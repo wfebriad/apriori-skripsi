@@ -8,20 +8,17 @@ $db_object = new database();
 
 if (isset($_GET['updates'])) {
 
-    $id_produk = $_POST['kode_produk'];
-    $kategori = $_POST['kategori'];
-    $nama_produk = $_POST['nama_produk'];
-    $harga_beli = $_POST['harga_beli'];
-    $harga_jual = $_POST['harga_jual'];
+    $id_itemset = $_POST['id_itemset'];
+    $nama_itemset = $_POST['nama_itemset'];
     //$stok = $_POST['stok'];
-    $query = "UPDATE produk SET nama_produk='$nama_produk', kategori='$kategori',harga_beli='$harga_beli',harga_jual='$harga_jual',stok='$stok' WHERE id_produk='$id_produk'";
+    $query = "UPDATE data_itemset SET nama_itemset='$nama_itemset' WHERE id_itemset='$id_itemset'";
     $input = $db_object->db_query($query); ?>
-    <script> alert('Data transaksi berhasil diubah'); location.replace("?menu=produk"); </script>
+    <script> alert('Data transaksi berhasil diubah'); location.replace("?menu=data_itemset"); </script>
 <?php }
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $query = "SELECT * FROM produk WHERE  id_produk='$id'";
+    $query = "SELECT * FROM data_itemset WHERE  id_itemset='$id'";
     $query = $db_object->db_query($query);
     $jumlah = $db_object->db_num_rows($query);
     while ($row = $db_object->db_fetch_array($query)) { ?>
@@ -29,19 +26,13 @@ if (isset($_GET['id'])) {
             <div class="form-group">
                 <div class="input-group">
                     <label>ID Itemset</label>
-                    <input name="kode_produk" value="<?=$row['id_produk']?>" readonly type="text" class="form-control">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <label>Kategori</label>
-                    <input name="kategori" value="<?=$row['kategori']?>" type="text" class="form-control">
+                    <input name="id_itemset" value="<?=$row['id_itemset']?>" readonly type="text" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group">
                     <label>Nama Itemset</label>
-                    <input name="nama_produk" value="<?=$row['nama_produk']?>" type="text" class="form-control">
+                    <input name="nama_itemset" value="<?=$row['nama_itemset']?>" type="text" class="form-control">
                 </div>
             </div>
             

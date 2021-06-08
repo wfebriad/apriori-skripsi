@@ -93,17 +93,17 @@ if (isset($_GET['menu'])) {
                 <li <?php echo ($menu == '' || $menu == 'home') ? "class='active'" : ""; ?> ><a
                             href="index.php"><span class="fa fa-home"></span> Home</a></li>
                 <?php
-                if (empty($_SESSION['apriori_toko_id'])) {
+                if (empty($_SESSION['apriori_skripsi_id'])) {
                     ?>
                     <li><a href="login.php">Login</a></li>
                     <?php
                 } else {
-                    if ($_SESSION['apriori_toko_level'] == 1) {
+                    if ($_SESSION['apriori_skripsi_level'] == 1) {
                         ?>
-                        <li <?php echo ($menu == 'produk') ? "class='active'" : ""; ?> ><a
-                                    href="index.php?menu=produk"><span class="fa fa-database"></span> Data Itemset</a></li>
-                        <li <?php echo ($menu == 'data_transaksi') ? "class='active'" : ""; ?> ><a
-                                    href="index.php?menu=data_transaksi"><span class="fa fa-database"></span> Riwayat Rekam Medis Pasien</a></li>
+                        <li <?php echo ($menu == 'data_itemset') ? "class='active'" : ""; ?> ><a
+                                    href="index.php?menu=data_itemset"><span class="fa fa-database"></span> Data Itemset</a></li>
+                        <li <?php echo ($menu == 'data_rekam_medis') ? "class='active'" : ""; ?> ><a
+                                    href="index.php?menu=data_rekam_medis"><span class="fa fa-database"></span> Riwayat Rekam Medis Pasien</a></li>
                         <li <?php echo ($menu == 'proses_apriori') ? "class='active'" : ""; ?>><a
                                     href="index.php?menu=proses_apriori"><span class="fa fa-refresh"></span> Proses Apriori</a></li>
                         <?php

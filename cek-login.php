@@ -18,15 +18,15 @@ if ($num_rows > 0) {
     $rows = $db->db_fetch_array($result);
     
         unset($_POST); // hapus post form
-        $_SESSION['apriori_toko_id'] = $rows['id']; // mengisi session
-        $_SESSION['apriori_toko_username'] = $rows['username'];
-        $_SESSION['apriori_toko_level'] = $rows['level'];
+        $_SESSION['apriori_skripsi_id'] = $rows['id']; // mengisi session
+        $_SESSION['apriori_skripsi_username'] = $rows['username'];
+        $_SESSION['apriori_skripsi_level'] = $rows['level'];
         $_SESSION['status_login'] = TRUE;
 
-        $level_name = ($_SESSION['apriori_toko_level']==1)?"admin":"kepala";
-        $_SESSION['apriori_toko_level_name'] = $level_name;
-        $_SESSION['apriori_toko_key'] = sha1(date("Y-m-d H:i:s") . $rows['id']);
-        $_SESSION['apriori_toko_last_login'] = date("d-m-Y H:i:s");
+        $level_name = ($_SESSION['apriori_skripsi_level']==1)?"admin":"kepala";
+        $_SESSION['apriori_skripsi_level_name'] = $level_name;
+        $_SESSION['apriori_skripsi_key'] = sha1(date("Y-m-d H:i:s") . $rows['id']);
+        $_SESSION['apriori_skripsi_last_login'] = date("d-m-Y H:i:s");
         header("location:index.php");
 } else {
      header("location:login.php?login=1");

@@ -5,7 +5,7 @@ if(isset($_SESSION['status_login'])){
     header("location:index.php");
 //    }
 }
-if (isset($_SESSION['apriori_toko_id'])) {
+if (isset($_SESSION['apriori_skripsi_id'])) {
     header("location:index.php");
 }
 

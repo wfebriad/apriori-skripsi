@@ -1,6 +1,6 @@
 <?php
 //session_start();
-if (!isset($_SESSION['apriori_toko_id'])) {
+if (!isset($_SESSION['apriori_skripsi_id'])) {
     header("location:index.php?menu=forbidden");
 }
 

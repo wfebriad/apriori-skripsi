@@ -1,2 +1,3 @@
-# apriori_toko
-data mining asosiasi algoritma apriori produk toko
+# apriori_skripsi_rsud
+
+data mining aturan asosiasi algoritma apriori rsud

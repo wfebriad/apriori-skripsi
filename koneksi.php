@@ -6,7 +6,7 @@ return array(
     'host' => "localhost",
     'username' => "root",
     'password' => "",
-    'dbname' => "apriori_toko",
+    'dbname' => "skripsi",
     // 'port' => "", // sementara menggunakan port bawaan
 );
 
