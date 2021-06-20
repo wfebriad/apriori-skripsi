@@ -9,17 +9,17 @@ include_once "fungsi.php";
 include_once "mining.php";
 include_once "display_mining.php";
 ?>
-    <!--<section class="page_head">-->
-    <!--    <div class="container">-->
-    <!--        <div class="row">-->
-    <!--            <div class="col-lg-12 col-md-12 col-sm-12">-->
-    <!--                <div class="page_title">-->
-    <!--                    <h2>Hasil Rule</h2>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</section>-->
+<!--<section class="page_head">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-12 col-md-12 col-sm-12">-->
+<!--                <div class="page_title">-->
+<!--                    <h2>Hasil Rule</h2>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 <?php
 //object database class
 $db_object = new database();
@@ -33,7 +33,7 @@ if (isset($_GET['pesan_success'])) {
 }
 
 if (isset($_POST['submit'])) {
-    ?>
+?>
     <!--    <div class="super_sub_content">-->
     <!--        <div class="container">-->
     <div class="row">
@@ -41,15 +41,19 @@ if (isset($_POST['submit'])) {
         $can_process = true;
         if (empty($_POST['min_support']) || empty($_POST['min_confidence'])) {
             $can_process = false;
-            ?>
-            <script> location.replace("?menu=view_rule&pesan_error=Min Support dan Min Confidence harus diisi");</script>
-            <?php
+        ?>
+            <script>
+                location.replace("?menu=view_rule&pesan_error=Min Support dan Min Confidence harus diisi");
+            </script>
+        <?php
         }
         if (!is_numeric($_POST['min_support']) || !is_numeric($_POST['min_confidence'])) {
             $can_process = false;
-            ?>
-            <script> location.replace("?menu=view_rule&pesan_error=Min Support dan Min Confidence harus diisi angka");</script>
-            <?php
+        ?>
+            <script>
+                location.replace("?menu=view_rule&pesan_error=Min Support dan Min Confidence harus diisi angka");
+            </script>
+        <?php
         }
 
         if ($can_process) {
@@ -61,8 +65,8 @@ if (isset($_POST['submit'])) {
 
             echo "Min Support Absolut: " . $_POST['min_support'];
             echo "<br>";
-            $sql = "SELECT COUNT(*) FROM transaksi 
-                    WHERE transaction_date BETWEEN '$start' AND '$end' ";
+            $sql = "SELECT COUNT(*) FROM rekam_medis
+                    WHERE tanggal_rm BETWEEN '$start' AND '$end' ";
             $res = $db_object->db_query($sql);
             $num = $db_object->db_fetch_array($res);
             $minSupportRelatif = ($_POST['min_support'] / $num[0]) * 100;
@@ -88,8 +92,14 @@ if (isset($_POST['submit'])) {
             );
             $query = $db_object->update_record("process_log", $field, $where);
 
-            $result = mining_process($db_object, $_POST['min_support'], $_POST['min_confidence'],
-                $start, $end, $id_process);
+            $result = mining_process(
+                $db_object,
+                $_POST['min_support'],
+                $_POST['min_confidence'],
+                $start,
+                $end,
+                $id_process
+            );
             if ($result) {
                 display_success("Proses mining selesai");
             } else {
@@ -103,7 +113,7 @@ if (isset($_POST['submit'])) {
     </div>
     <!--        </div>-->
     <!--    </div>-->
-    <?php
+<?php
 } else {
     $id_process = 0;
     if (isset($_GET['id_process'])) {
@@ -115,8 +125,8 @@ if (isset($_POST['submit'])) {
          confidence conf, process_log log
         WHERE conf.id_process = '$id_process' "
         . " AND conf.id_process = log.id "
-        . " AND conf.from_itemset=3 ";//. " ORDER BY conf.lolos DESC";
-//        echo $sql;
+        . " AND conf.from_itemset=3 "; //. " ORDER BY conf.lolos DESC";
+    //        echo $sql;
     $query = $db_object->db_query($sql);
     $jumlah = $db_object->db_num_rows($query);
 
@@ -127,8 +137,8 @@ if (isset($_POST['submit'])) {
          confidence conf, process_log log
         WHERE conf.id_process = '$id_process' "
         . " AND conf.id_process = log.id "
-        . " AND conf.from_itemset=2 ";//. " ORDER BY conf.lolos DESC";
-//        echo $sql;
+        . " AND conf.from_itemset=2 "; //. " ORDER BY conf.lolos DESC";
+    //        echo $sql;
     $query1 = $db_object->db_query($sql1);
     $jumlah1 = $db_object->db_num_rows($query1);
 
@@ -136,7 +146,7 @@ if (isset($_POST['submit'])) {
 WHERE id = " . $id_process;
     $res_log = $db_object->db_query($sql_log);
     $row_log = $db_object->db_fetch_array($res_log);
-    ?>
+?>
     <!---->
     <!--<div class="super_sub_content">-->
     <!--    <div class="container">-->
@@ -219,10 +229,12 @@ WHERE id = " . $id_process;
             <tr>
                 <th>No</th>
                 <th>X => Y</th>
+                <th>Support X U Y</th>
+                <th>Support X</th>
                 <th>Confidence</th>
-                <th>Nilai Uji lift</th>
+                <!--<th>Nilai Uji lift</th>
                 <th>Korelasi rule</th>
-                <!--<th></th>-->
+                <th></th>-->
             </tr>
             <?php
             $no = 1;
@@ -241,9 +253,11 @@ WHERE id = " . $id_process;
                 echo "<tr>";
                 echo "<td>" . $no . "</td>";
                 echo "<td>" . $val['kombinasi1'] . " => " . $val['kombinasi2'] . "</td>";
+                echo "<td>" . price_format($val['support_xUy']) . "</td>";
+                echo "<td>" . price_format($val['support_x']) . "</td>";
                 echo "<td>" . price_format($val['confidence']) . "</td>";
-                echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
-                echo "<td>" . ($val['korelasi_rule']) . "</td>";
+                //echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
+                //echo "<td>" . ($val['korelasi_rule']) . "</td>";
                 //echo "<td>" . ($val['lolos'] == 1 ? "Lolos" : "Tidak Lolos") . "</td>";
                 echo "</tr>";
                 $no++;
@@ -308,7 +322,7 @@ WHERE id = " . $id_process;
                 echo "</tr>";
                 $no++;
                 if ($row1['lolos'] == 1) {
-                    $itemset1[] = $row1['atribut'];//item yg lolos itemset1
+                    $itemset1[] = $row1['atribut']; //item yg lolos itemset1
                     $jumlahItemset1[] = $row1['jumlah'];
                     $supportItemset1[] = price_format($row1['support']);
                 }
@@ -488,9 +502,9 @@ WHERE id = " . $id_process;
         <?php
         //}
         ?>
-<!--    </div>-->
-        </div>
+        <!--    </div>-->
     </div>
-    <?php
+    </div>
+<?php
 }
 ?>
