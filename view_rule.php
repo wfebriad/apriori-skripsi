@@ -168,7 +168,8 @@ WHERE id = " . $id_process;
                 <th>Support X U Y</th>
                 <th>Support X</th>
                 <th>Confidence</th>
-                <th></th>
+                <!--<th>Nilai Uji Lift</th>-->
+                <th>Keterangan</th>
             </tr>
             <?php
             $no = 1;
@@ -181,6 +182,7 @@ WHERE id = " . $id_process;
                 echo "<td>" . price_format($row['support_xUy']) . "</td>";
                 echo "<td>" . price_format($row['support_x']) . "</td>";
                 echo "<td>" . price_format($row['confidence']) . "</td>";
+                //echo "<td>" . price_format($row['nilai_uji_lift']) . "</td>";
                 $keterangan = ($row['confidence'] <= $row['min_confidence']) ? "Tidak Lolos" : "Lolos";
                 echo "<td>" . $keterangan . "</td>";
                 echo "</tr>";
@@ -232,9 +234,9 @@ WHERE id = " . $id_process;
                 <th>Support X U Y</th>
                 <th>Support X</th>
                 <th>Confidence</th>
-                <!--<th>Nilai Uji lift</th>
+                <th>Nilai Uji lift</th>
                 <th>Korelasi rule</th>
-                <th></th>-->
+                <th>Keterangan</th>
             </tr>
             <?php
             $no = 1;
@@ -256,9 +258,9 @@ WHERE id = " . $id_process;
                 echo "<td>" . price_format($val['support_xUy']) . "</td>";
                 echo "<td>" . price_format($val['support_x']) . "</td>";
                 echo "<td>" . price_format($val['confidence']) . "</td>";
-                //echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
-                //echo "<td>" . ($val['korelasi_rule']) . "</td>";
-                //echo "<td>" . ($val['lolos'] == 1 ? "Lolos" : "Tidak Lolos") . "</td>";
+                echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
+                echo "<td>" . ($val['korelasi_rule']) . "</td>";
+                echo "<td>" . ($val['lolos'] == 1 ? "Lolos" : "Tidak Lolos") . "</td>";
                 echo "</tr>";
                 $no++;
             }

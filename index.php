@@ -1,10 +1,10 @@
 <?php
 error_reporting(1);
 session_start();
-if(!isset($_SESSION['status_login'])){
-//    if ($_SESSION['status_login'] == null){
-        header("location:login.php");
-//    }
+if (!isset($_SESSION['status_login'])) {
+    //    if ($_SESSION['status_login'] == null){
+    header("location:login.php");
+    //    }
 }
 //echo $_SESSION['status_login'];
 //die();
@@ -17,8 +17,10 @@ if (!file_exists($menu . ".php")) {
     $menu = 'not_found';
 }
 
-if (!isset($_SESSION['apriori_skripsi_id']) &&
-    ($menu != '' & $menu != 'home' & $menu != 'tentang' & $menu != 'not_found' & $menu != 'forbidden')) {
+if (
+    !isset($_SESSION['apriori_skripsi_id']) &&
+    ($menu != '' & $menu != 'home' & $menu != 'tentang' & $menu != 'not_found' & $menu != 'forbidden')
+) {
     header("location:login.php");
 }
 include_once 'fungsi.php';
@@ -34,7 +36,8 @@ include_once 'fungsi.php';
 
 <!-- <section id="pageloader">
     <div class="loader-item fa fa-spin colored-border"></div>
-</section> --> <!-- /#pageloader -->
+</section> -->
+<!-- /#pageloader -->
 
 <?php
 include "header.php";
@@ -55,33 +58,33 @@ include "header.php";
     <!-- Main content -->
     <section class="content">
         <!-- Info boxes -->
-         <div class="container-fluid">
+        <div class="container-fluid">
 
-        <?php
+            <?php
 
-        $menu = ''; //variable untuk menampung menu
-        if (isset($_GET['menu'])) {
-            $menu = $_GET['menu'];
-        }
+            $menu = ''; //variable untuk menampung menu
+            if (isset($_GET['menu'])) {
+                $menu = $_GET['menu'];
+            }
 
 
-        if ($menu != '') {
-            if (can_access_menu($menu)) {
-                if (file_exists($menu . ".php")) {
-                    include $menu . '.php';
+            if ($menu != '') {
+                if (can_access_menu($menu)) {
+                    if (file_exists($menu . ".php")) {
+                        include $menu . '.php';
+                    } else {
+                        include "not_found.php";
+                    }
                 } else {
-                    include "not_found.php";
+                    include "forbidden.php";
                 }
             } else {
-                include "forbidden.php";
+                include "home.php";
             }
-        } else {
-            include "home.php";
-        }
-        ?>
-         </div>
+            ?>
         </div>
-    </section>
+</div>
+</section>
 </div>
 <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -115,7 +118,9 @@ include "header.php";
 <!-- AdminLTE for demo purposes -->
 <script src="assets/dist/js/demo.js"></script>
 <script src="js/vendor/jquery-1.11.0.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+<script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')
+</script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 <script type="text/javascript" src="scripts/bootstrap/bootstrap.min.js"></script>
@@ -124,10 +129,12 @@ include "header.php";
 <!-- Preloader -->
 <script type="text/javascript">
     //<![CDATA[
-    $(window).load(function () { // makes sure the whole site is loaded
+    $(window).load(function() { // makes sure the whole site is loaded
         $('.loader-item').fadeOut(); // will first fade out the loading animation
         $('#pageloader').fadeOut('fast'); // will fade out the white DIV that covers the website.
-        $('body').css({'overflow-y': 'visible'});
+        $('body').css({
+            'overflow-y': 'visible'
+        });
     })
     //]]>
 </script>
@@ -141,13 +148,12 @@ include "header.php";
 
 <!-- Page script -->
 <script>
-    $(function () {
+    $(function() {
         //Date range picker
-        $('#reservation').daterangepicker(
-            {format: 'DD/MM/YYYY'}
-        );
-        $('#daterange-btn').daterangepicker(
-            {
+        $('#reservation').daterangepicker({
+            format: 'DD/MM/YYYY'
+        });
+        $('#daterange-btn').daterangepicker({
                 ranges: {
                     'Today': [moment(), moment()],
                     'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -159,7 +165,7 @@ include "header.php";
                 startDate: moment().subtract(29, 'days'),
                 endDate: moment()
             },
-            function (start, end) {
+            function(start, end) {
                 $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
             }
         );
@@ -167,5 +173,5 @@ include "header.php";
     });
 </script>
 </body>
-</html>
 
+</html>

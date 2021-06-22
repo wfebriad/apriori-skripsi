@@ -7,6 +7,7 @@ if (isset($_GET['menu'])) {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,7 +24,7 @@ if (isset($_GET['menu'])) {
     <link rel="stylesheet" href="assets/dist/css/AdminLTE.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="assets/dist/css/skins/_all-skins.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,51 +34,51 @@ if (isset($_GET['menu'])) {
     <![endif]-->
 
     <!-- Google Font -->
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
 <body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+    <div class="wrapper">
 
-    <header class="main-header">
-        <!-- Logo -->
-        <a href="" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
-        </a>
-        <!-- Header Navbar: style can be found in header.less -->
-        <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>A</b>LT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin</b>LTE</span>
             </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
 
-            <div class="navbar-custom-menu">
+                <div class="navbar-custom-menu">
 
-            </div>
-        </nav>
-    </header>
-    <!-- Left side column. contains the logo and sidebar -->
-    <aside class="main-sidebar">
-        <!-- sidebar: style can be found in sidebar.less -->
-        <section class="sidebar">
-            <!-- Sidebar user panel -->
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                 </div>
-                <div class="pull-left info">
-                    <p>Wisnu Febriadi</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>Wisnu Febriadi</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    </div>
                 </div>
-            </div>
-            <!-- search form -->
-            <!--<form action="#" method="get" class="sidebar-form">
+                <!-- search form -->
+                <!--<form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="Search...">
                     <span class="input-group-btn">
@@ -86,36 +87,31 @@ if (isset($_GET['menu'])) {
               </span>
                 </div>
             </form> -->
-            <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">MAIN NAVIGATION</li>
-                <li <?php echo ($menu == '' || $menu == 'home') ? "class='active'" : ""; ?> ><a
-                            href="index.php"><span class="fa fa-home"></span> Home</a></li>
-                <?php
-                if (empty($_SESSION['apriori_skripsi_id'])) {
-                    ?>
-                    <li><a href="login.php">Login</a></li>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MAIN NAVIGATION</li>
+                    <li <?php echo ($menu == '' || $menu == 'home') ? "class='active'" : ""; ?>><a href="index.php"><span class="fa fa-home"></span> Home</a></li>
                     <?php
-                } else {
-                    if ($_SESSION['apriori_skripsi_level'] == 1) {
-                        ?>
-                        <li <?php echo ($menu == 'data_itemset') ? "class='active'" : ""; ?> ><a
-                                    href="index.php?menu=data_itemset"><span class="fa fa-database"></span> Data Itemset</a></li>
-                        <li <?php echo ($menu == 'data_rekam_medis') ? "class='active'" : ""; ?> ><a
-                                    href="index.php?menu=data_rekam_medis"><span class="fa fa-database"></span> Riwayat Rekam Medis Pasien</a></li>
-                        <li <?php echo ($menu == 'proses_apriori') ? "class='active'" : ""; ?>><a
-                                    href="index.php?menu=proses_apriori"><span class="fa fa-refresh"></span> Proses Apriori</a></li>
+                    if (empty($_SESSION['apriori_skripsi_id'])) {
+                    ?>
+                        <li><a href="login.php">Login</a></li>
                         <?php
+                    } else {
+                        if ($_SESSION['apriori_skripsi_level'] == 1) {
+                        ?>
+                            <li <?php echo ($menu == 'data_itemset') ? "class='active'" : ""; ?>><a href="index.php?menu=data_itemset"><span class="fa fa-database"></span> Data Itemset</a></li>
+                            <li <?php echo ($menu == 'data_rekam_medis') ? "class='active'" : ""; ?>><a href="index.php?menu=data_rekam_medis"><span class="fa fa-database"></span> Riwayat Rekam Medis Pasien</a></li>
+                            <li <?php echo ($menu == 'proses_apriori') ? "class='active'" : ""; ?>><a href="index.php?menu=proses_apriori"><span class="fa fa-refresh"></span> Proses Apriori</a></li>
+                        <?php
+                        }
+                        ?>
+                        <li <?php echo ($menu == 'hasil_rule') ? "class='active'" : ""; ?>><a href="index.php?menu=hasil_rule"><span class="fa fa-check-circle"></span> Hasil Rule</a></li>
+                        <li><a href="logout.php" onclick="return confirm('Yakin ingin keluar ?')"><span class="fa fa-sign-out"></span> Logout</a></li>
+                    <?php
                     }
                     ?>
-                    <li <?php echo ($menu == 'hasil_rule') ? "class='active'" : ""; ?>><a
-                                href="index.php?menu=hasil_rule"><span class="fa fa-check-circle"></span> Hasil Rule</a></li>
-                    <li><a href="logout.php" onclick="return confirm('Yakin ingin keluar ?')"><span class="fa fa-sign-out" ></span> Logout</a></li>
-                    <?php
-                }
-                ?>
-            </ul>
-        </section>
-        <!-- /.sidebar -->
-    </aside>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>

@@ -187,10 +187,10 @@ if (isset($_POST['submit'])) {
             <div class="row">
                 <div class="col-lg-6 ">
                     <div class="form-group">
-                        <input name="min_support" type="text" class="form-control" placeholder="Min Support">
+                        <input name="min_support" type="text" class="form-control" placeholder="Min Support (Jumlah Data)">
                     </div>
                     <div class="form-group">
-                        <input name="min_confidence" type="text" class="form-control" placeholder="Min Confidence">
+                        <input name="min_confidence" type="text" class="form-control" placeholder="Min Confidence (Dalam Persen %)">
                     </div>
                     <div class="form-group">
                         <input name="submit" type="submit" value="Proses" class="btn btn-success">

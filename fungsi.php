@@ -782,12 +782,12 @@ function link_text($link, $label, $params='')
 }
 
 /**
- * format number 2 dibelakang koma (number_format($value,2)
+ * format number 4 dibelakang koma (number_format($value,4)
  * @param type $value
  * @return type
  */
 function price_format($value){
-	return number_format($value,2, ',', '.');
+	return number_format($value,4, ',', '.');
 }
 
 /**
@@ -811,5 +811,3 @@ function format_date_db($date){
     $date_ex = explode("-", $date);
     return $date_ex[2]."-".$date_ex[1]."-".$date_ex[0];
 }
-
-?>
