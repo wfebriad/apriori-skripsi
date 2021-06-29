@@ -168,7 +168,7 @@ WHERE id = " . $id_process;
                 <th>Support X U Y</th>
                 <th>Support X</th>
                 <th>Confidence</th>
-                <!--<th>Nilai Uji Lift</th>-->
+                <!--<th>Nilai Lift Ratio</th>-->
                 <th>Keterangan</th>
             </tr>
             <?php
@@ -203,7 +203,8 @@ WHERE id = " . $id_process;
                 <th>Support X U Y</th>
                 <th>Support X</th>
                 <th>Confidence</th>
-                <th></th>
+                <!--<th>Nilai Lift Ratio</th>-->
+                <th>Keterangan</th>
             </tr>
             <?php
             $no = 1;
@@ -214,6 +215,7 @@ WHERE id = " . $id_process;
                 echo "<td>" . price_format($row['support_xUy']) . "</td>";
                 echo "<td>" . price_format($row['support_x']) . "</td>";
                 echo "<td>" . price_format($row['confidence']) . "</td>";
+                //echo "<td>" . price_format($row['nilai_uji_lift']) . "</td>";
                 $keterangan = ($row['confidence'] <= $row['min_confidence']) ? "Tidak Lolos" : "Lolos";
                 echo "<td>" . $keterangan . "</td>";
                 echo "</tr>";
@@ -234,8 +236,8 @@ WHERE id = " . $id_process;
                 <th>Support X U Y</th>
                 <th>Support X</th>
                 <th>Confidence</th>
-                <th>Nilai Uji lift</th>
-                <th>Korelasi rule</th>
+                <!--<th>Nilai Lift Ratio</th>
+                <th>Korelasi rule</th>-->
                 <th>Keterangan</th>
             </tr>
             <?php
@@ -258,8 +260,8 @@ WHERE id = " . $id_process;
                 echo "<td>" . price_format($val['support_xUy']) . "</td>";
                 echo "<td>" . price_format($val['support_x']) . "</td>";
                 echo "<td>" . price_format($val['confidence']) . "</td>";
-                echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
-                echo "<td>" . ($val['korelasi_rule']) . "</td>";
+                //echo "<td>" . price_format($val['nilai_uji_lift']) . "</td>";
+                //echo "<td>" . ($val['korelasi_rule']) . "</td>";
                 echo "<td>" . ($val['lolos'] == 1 ? "Lolos" : "Tidak Lolos") . "</td>";
                 echo "</tr>";
                 $no++;
@@ -280,8 +282,7 @@ WHERE id = " . $id_process;
             foreach ($data_confidence as $key => $val) {
                 if ($val['lolos'] == 1) {
                     echo "<tr>";
-                    echo "<td>" . $no . ". Jika  " . $val['kombinasi1']
-                        . ", maka " . $val['kombinasi2'] . "</td>";
+                    echo "<td>" . $no . ". Jika  " . $val['kombinasi1'] . ", maka " . $val['kombinasi2'] . " </td>";
                     echo "</tr>";
                 }
                 $no++;
@@ -310,7 +311,7 @@ WHERE id = " . $id_process;
                 <th>Item 1</th>
                 <th>Jumlah</th>
                 <th>Support</th>
-                <th></th>
+                <th>Keterangan</th>
             </tr>
             <?php
             $no = 1;
@@ -376,7 +377,7 @@ WHERE id = " . $id_process;
                 <th>Item 2</th>
                 <th>Jumlah</th>
                 <th>Support</th>
-                <th></th>
+                <th>Keterangan</th>
             </tr>
             <?php
             $no = 1;
@@ -447,7 +448,7 @@ WHERE id = " . $id_process;
                 <th>Item 3</th>
                 <th>Jumlah</th>
                 <th>Support</th>
-                <th></th>
+                <th>Keterangan</th>
             </tr>
             <?php
             $no = 1;
