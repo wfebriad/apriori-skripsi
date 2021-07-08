@@ -180,7 +180,7 @@ if (isset($_GET['tambah_transaksi'])) {
         display_success($pesan_success);
     }
 
-    $sql = "SELECT * FROM rekam_medis";
+    $sql = "SELECT * FROM rekam_medis ORDER BY tanggal_rm DESC";
     $query = $db_object->db_query($sql);
     $jumlah = $db_object->db_num_rows($query);
     // echo "<BR><p>Jumlah data: " . $jumlah . "</p><br>";
